@@ -1,0 +1,26 @@
+body{
+	background: #F5F8DE;
+}
+*{
+	margin: 3px;
+}
+.painel{
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  right: 40%;  
+}
+.campo{
+	width: 100%;
+	height: 20%;
+}
+.botao{
+	background: #DC1C18;
+	width: 30%;
+	height: 15%;
+	border-radius: 8px;
+	border-color: white;
+}
+.divbtn{
+	justify-content: center
+}
