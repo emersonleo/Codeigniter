@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>PokéProject</title>
-	<link rel="stylesheet" type="text/css" href="http://localhost/poke/assets/css/home.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost/poke/assets/css/cadastro.css">
 
 </head>
 <body>
