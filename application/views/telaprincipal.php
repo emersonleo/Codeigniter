@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>PokéProject</title>
+	<title>Bem-vindo</title>
 	<link rel="stylesheet" type="text/css" href="http://localhost/poke/assets/css/cadastro.css">
 	<link rel="icon" href="http://localhost/poke/assets/img/icon.png">
 
@@ -22,10 +22,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </body>
 </html>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
-<script>
-	$("#btnVoltar").click(function(){
-		window.location.href = <?php echo '"'.base_url('home').'"'; ?>
-	})
-
-</script>

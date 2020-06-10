@@ -6,6 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta charset="utf-8">
 	<title>PokéProject</title>
 	<link rel="stylesheet" type="text/css" href="http://localhost/poke/assets/css/home.css">
+	<link rel="icon" href="http://localhost/poke/assets/img/icon.png">
 
 </head>
 <body>
@@ -26,5 +27,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$("#btnCadastro").click(function(){
 		window.location.href = <?php echo '"'.base_url('cadastro').'"'; ?>
 	})
-
+	$('#btnLogin').click(function(){
+		var dadoLogin = $('#login')[0].value
+		var dadoSenha = $('#senha')[0].value
+		$.post(<?php echo '"'.base_url('acessar').'"';?>, {"login": dadoLogin, "senha": dadoSenha}, function(permitido){
+			if(permitido){
+				window.location.href('')
+			}
+		})
+	})
 </script>

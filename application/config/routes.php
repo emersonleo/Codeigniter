@@ -56,6 +56,7 @@ $route['cadastro'] = 'ctelas/goToCadastro';
 
 #funções
 $route['cadastrar'] = 'cprincipal/cadastrar';
+$route['acessar'] = 'cprincipal/login'; 
 
 $route['default_controller'] = 'cprincipal';
 $route['404_override'] = '';

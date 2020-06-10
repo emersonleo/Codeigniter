@@ -1,7 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class usuario extends CI_Model {
+class Usuario extends CI_Model {
+
+	fuction __construct(){
+		parent::__construct;
+	}
 
 	public function index()
 	{
@@ -16,8 +20,9 @@ class usuario extends CI_Model {
 	public function apagarConta(){
 
 	}
-	public function buscarUsuario(){
-		
+	public function buscarUsuario($usuario, $senha){
+		$query = $this -> db -> get_where('usuario', array('login' => $usuario, 'senha' => $senha));
+		return $query -> row_array();
 	}
 
 }
