@@ -27,5 +27,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	$("#btnVoltar").click(function(){
 		window.location.href = <?php echo '"'.base_url('home').'"'; ?>
 	})
+	$("#btnCadastrar").click(function(){
+		//$.post(<?php echo '"'.base_url('cadastrar').'"';?>, {"login":})
+	})
 
 </script>
