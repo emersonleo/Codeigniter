@@ -12,12 +12,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container" class="painel">
-	<input type="text" id='login' name="login" placeholder="Login" class="campo">
-	<input type="text" id='senha' name="senha" placeholder="Senha" class="campo">
-	<div class="divbtn">
-		<button type="button" id="btnLogin" class="botao"> Logar </button>
-		<button type="button" id="btnCadastro" class="botao"> Cadastre-se </button>
-	</div>
+	<form method="post" action= <?php echo '"'.base_url('acessar').'"'?>>
+		<input type="text" id='login' name="login" placeholder="Login" class="campo" required>
+		<input type="text" id='senha' name="senha" placeholder="Senha" class="campo" required>
+		<div class="divbtn">
+			<button type="submit" id="btnLogin" class="botao"> Logar </button>
+			<button type="button" id="btnCadastro" class="botao" formnovalidate> Cadastre-se </button>
+		</div>
+	</form>
 </div>
 
 </body>
@@ -26,14 +28,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script>
 	$("#btnCadastro").click(function(){
 		window.location.href = <?php echo '"'.base_url('cadastro').'"'; ?>
-	})
-	$('#btnLogin').click(function(){
-		var dadoLogin = $('#login')[0].value
-		var dadoSenha = $('#senha')[0].value
-		$.post(<?php echo '"'.base_url('acessar').'"';?>, {"login": dadoLogin, "senha": dadoSenha}, function(permitido){
-			if(permitido){
-				window.location.href('')
-			}
-		})
 	})
 </script>

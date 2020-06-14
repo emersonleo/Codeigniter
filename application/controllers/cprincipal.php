@@ -6,7 +6,6 @@ class cprincipal extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this -> load -> model('usuario');
-		$this -> load -> library('output');
 	}
 	public function index()
 	{
@@ -19,17 +18,29 @@ class cprincipal extends CI_Controller {
 		$result = $this -> usuario -> criarUsuario($login,$senha,$nome);
 		if($result){
 			$this -> output -> set_output(true);
+			redirect('home');
+		}else{
+			redirect('cadastro');
 		}
 	}
 	public function login(){
 		$login = $_POST['login'];
 		$senha = $_POST['senha'];
 		$result = $this -> usuario -> buscarUsuario($login,$senha);
-		if($result){
-			$this -> session -> set_userdata('usuario_autorizado', $result);
+		if($result -> num_rows() > 0){
+			$this -> session -> set_userdata('usuario_autorizado', $result -> row());
 			$this -> output -> set_output(true);
+			redirect("principal");
+		}
+		else{
+			$this -> session -> set_flashdata('error', "LOG001 - login e senha não confere");
+			redirect('home');
 		}
 		
+	}
+	public function logout(){
+		$this -> session -> set_userdata('usuario_autorizado', null);
+		redirect('home');
 	}
 
 }

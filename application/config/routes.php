@@ -53,10 +53,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 #direcionamento de telas
 $route['home'] = 'ctelas/goToLogin';
 $route['cadastro'] = 'ctelas/goToCadastro';
+$route['principal'] = 'ctelas/goToPrincipal';
 
 #funções
 $route['cadastrar'] = 'cprincipal/cadastrar';
 $route['acessar'] = 'cprincipal/login'; 
+$route['sair'] = 'cprincipal/logout';
 
 $route['default_controller'] = 'cprincipal';
 $route['404_override'] = '';

@@ -13,8 +13,12 @@ class Usuario extends CI_Model {
 		redirect('home');
 	}
 	public function criarUsuario($login,$senha,$nome){
-		$query = $this -> db -> insert('usuario', array('login' => $login, 'senha' => md5($senha), 'nome' => $nome));
-		return $query -> row();
+		if(!$this -> buscarUsuarioPorLogin($login)){
+			$result = $this -> db -> insert('usuario', array('login' => $login, 'senha' => md5($senha), 'nome' => $nome));
+		}else{
+			$result = false;
+		}
+		return $result;
 	}
 	public function alterarSenha(){
 
@@ -23,8 +27,12 @@ class Usuario extends CI_Model {
 
 	}
 	public function buscarUsuario($usuario, $senha){
-		$query = $this -> db -> get_where('usuario', array('login' => $usuario, 'senha' => md5($senha)));
-		return $query -> row_array();
+		$result = $this -> db -> get_where('usuario', array('login' => $usuario, 'senha' => md5($senha)));
+		return $result;
+	}
+	public function buscarUsuarioPorLogin($usuario){
+		$result = $this -> db -> get_where('usuario', array('login' => $usuario));
+		return $result;
 	}
 
 }
