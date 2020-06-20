@@ -16,8 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<form method="post" action= <?php echo '"'.base_url('cadastrar').'"'?>>
 		<input type="text" id='nome' name="nome" placeholder="Seu nome" class="form-control" required style="margin-bottom: 5px"> 
 		<input type="text" id='login' name="login" placeholder="Login"  class="form-control" required style="margin-bottom: 5px">
-		<input type="text" id='senha' name="senha" placeholder="Senha"  class="form-control"required style="margin-bottom: 5px">
-		<input type="text" id='senha' name="senha" placeholder="Confirmar"  class="form-control" required style="margin-bottom:  5px">
+		<input type="password" id='senha' name="senha" placeholder="Senha"  class="form-control"required style="margin-bottom: 5px">
+		<input type="password" id='confirmarsenha' name="confirmarsenha" placeholder="Confirmar senha"  class="form-control" required style="margin-bottom:  5px">
 		<button type="button" id="btnVoltar" class="btn" style="background: #DC1C18;" > Voltar </button>
 		<button type="submit" id="btnCadastrar"class="btn" style="background: #DC1C18;"> Cadastrar </button>
 	</form>

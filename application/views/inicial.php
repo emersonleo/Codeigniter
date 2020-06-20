@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div id="container" class="container" style="width: 35%; margin-top: 20%" >
 	<form method="post" action= <?php echo '"'.base_url('acessar').'"'?>>
 		<input type="text" id='login' name="login" placeholder="Login" class="form-control" required style="margin: 5px">
-		<input type="text" id='senha' name="senha" placeholder="Senha" class="form-control" required style="margin: 5px">
+		<input type="password" id='senha' name="senha" placeholder="Senha" class="form-control" required style="margin: 5px">
 		<div class="center">
 			<button type="submit" id="btnLogin" class="btn" style="background: #DC1C18; margin-left: 2px" > Logar </button>
 			<button type="button" id="btnCadastro" class="btn" style="background: #DC1C18;"formnovalidate> Cadastre-se </button>

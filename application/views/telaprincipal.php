@@ -1,5 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+		if(!$this -> session -> userdata("usuario_autorizado") -> nome){
+			redirect('home');
+		}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,11 +14,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 </head>
 <body style="background: #FDF2EC">
+ 	<header>
+ 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Alterna navegação">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		    <div class="navbar-nav">
+		    	<ul class="navbar-nav">
+		    	<li class="nav-item">
+		    		<a class="nav-item nav-link" href="#">Inicio</a>
+		    	</li>
+		    	<li class="nav-item dropdown">
+			    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Conta
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			          <a class="dropdown-item" href="#">Alterar Conta</a>
+			          <a class="dropdown-item" href="#">Excluir Conta</a>
+			        </div>
+		    	</li>
+		    	<li class="nav-item">
+		    		<button id='btnSair' name="btnSair" class="btn btn-outline-danger form-control"> Sair </button>
+		    	</li>
+				</ul>
+		    </div>
+		  </div>
+		</nav>
+ 	</header>
 
-<div id="container" class="container card" style="margin-top:20%">
-	<h1> Bem vindo, <?php echo $this -> session -> userdata("usuario_autorizado") -> nome;?> </h1>
-	<button id='btnSair' name="btnSair" class="btn btn-outline-danger" style="width: 15%"> sair </button>
-</div>
+	<div id="container" class="container card" style="margin-top:20%">
+		<h1> Bem vindo, <?php echo $this -> session -> userdata("usuario_autorizado") -> nome;?> </h1>
+	</div>
 
 	<footer>
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -27,6 +57,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </html>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
 <script type="text/javascript">
+	$(function(){
+			$.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1000", function(data){
+					console.log(data);
+			})
+	})
 	$('#btnSair').click(function(){
 		window.location.href = <?php echo '"'.base_url('sair').'"'; ?>
 	})
