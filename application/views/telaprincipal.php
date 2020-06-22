@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
 	<meta charset="utf-8">
 	<title>Bem-vindo</title>
-	<link rel="icon" href="http://localhost/poke/assets/img/icon.png">
+	<link rel="icon" href="http://localhost/poke/assets/img/icon.png" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
@@ -43,8 +43,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</nav>
  	</header>
 
-	<div id="container" class="container card" style="margin-top:20%">
-		<h1> Bem vindo, <?php echo $this -> session -> userdata("usuario_autorizado") -> nome;?> </h1>
+	<div id="container" class="container">
+		<div id='divcollection' class="row">
+		</div>
+
 	</div>
 
 	<footer>
@@ -57,9 +59,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </html>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
 <script type="text/javascript">
+	function construirCard(pokemon,numero){
+		console.log(pokemon)
+		var nome = pokemon.name[0].toUpperCase() + pokemon.name.substring(1,pokemon.name.length)
+		var strCard = "<div class='card' style='width:15%; height:20%; margin: 3px; text-align:center'><br> " + nome + "<br>" + numero + "<br></div>"
+		return strCard;
+	}
 	$(function(){
 			$.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=1000", function(data){
-					console.log(data);
+				var pokemons = data.results;
+				var strBody = "";
+				for (var i = 0; i < 150; i++) {
+					var pokemon = pokemons[i];
+					console.log(pokemons[i])
+					var numero = ("0000" + (i + 1)).slice(-4);
+					strBody += construirCard(pokemon,numero);
+				}
+				$('#divcollection')[0].innerHTML = strBody
 			})
 	})
 	$('#btnSair').click(function(){

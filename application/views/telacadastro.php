@@ -10,9 +10,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
-<body>
+<body style="background: #72726E;">
 
-<div id="container" class="container" style="width: 35%; margin-top: 15%">
+<div id="container" class="container" style="width: 35%; margin-top: 10%">
+	<img src="http://localhost/poke/assets/img/pokemon2.png" style="margin-bottom:25px; padding-left: 20% " >
 	<form method="post" action= <?php echo '"'.base_url('cadastrar').'"'?>>
 		<input type="text" id='nome' name="nome" placeholder="Seu nome" class="form-control" required style="margin-bottom: 5px"> 
 		<input type="text" id='login' name="login" placeholder="Login"  class="form-control" required style="margin-bottom: 5px">

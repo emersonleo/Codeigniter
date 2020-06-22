@@ -1,0 +1,14 @@
+body{
+	background: #EED2D2;
+}
+.painel{
+	background: white;
+	position: absolute;
+	top: 30%;
+	left: 30%;
+	min-height: 30%;
+	min-width: 30%;
+}
+h1{
+	align-items: center;
+}
