@@ -61,8 +61,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script type="text/javascript">
 	function construirCard(pokemon,numero){
 		console.log(pokemon)
+		var numeroFormatado = ("0000" + (numero + 1)).slice(-4);
 		var nome = pokemon.name[0].toUpperCase() + pokemon.name.substring(1,pokemon.name.length)
-		var strCard = "<div class='card' style='width:15%; height:20%; margin: 3px; text-align:center'><br> " + nome + "<br>" + numero + "<br></div>"
+		var strCard = "<div class='card' style='width:10%; height:10%; margin:5px; text-align:center; padding-top:0px;'><br> " + 
+		"<img class='pb-0' src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + (numero + 1).toString() + ".png'>" +
+		"<br><p class='row'> " + nome + "</p><br>" 
+		+ '<p class="row">' + numeroFormatado + '</p>'
+		"<br></div>"
 		return strCard;
 	}
 	$(function(){
@@ -72,8 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				for (var i = 0; i < 150; i++) {
 					var pokemon = pokemons[i];
 					console.log(pokemons[i])
-					var numero = ("0000" + (i + 1)).slice(-4);
-					strBody += construirCard(pokemon,numero);
+					strBody += construirCard(pokemon,i);
 				}
 				$('#divcollection')[0].innerHTML = strBody
 			})
