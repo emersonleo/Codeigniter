@@ -59,6 +59,7 @@ $route['principal'] = 'ctelas/goToPrincipal';
 $route['cadastrar'] = 'cprincipal/cadastrar';
 $route['acessar'] = 'cprincipal/login'; 
 $route['sair'] = 'cprincipal/logout';
+$route['excluir'] = 'cprincipal/deletar';
 
 $route['default_controller'] = 'cprincipal';
 $route['404_override'] = '';

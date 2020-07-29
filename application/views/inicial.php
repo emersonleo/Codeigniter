@@ -8,9 +8,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" type="text/css" href="http://localhost/poke/assets/css/home.css">
 	<link rel="icon" href="http://localhost/poke/assets/img/icon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
-</head>
-<body style="background: #72726E;">
+</head
+><body style="background: #72726E;">
+	<?php 
+		if($this -> session -> flashdata("error") == "LOG001 - login e senha não confere"){
+			echo "<script> Swal.fire('Login e senha não encontrados', 'Não foram encontrados login e senha correspondente para esse usuário','error'); </script>";
+		}
+	?>
 
 <div id="container" class="container" style="width: 35%; margin-top: 10%" >
 	<img src="http://localhost/poke/assets/img/pokemon2.png" style="margin-bottom:25px; padding-left: 20% " >

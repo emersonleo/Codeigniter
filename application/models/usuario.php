@@ -23,8 +23,14 @@ class Usuario extends CI_Model {
 	public function alterarSenha(){
 
 	}
-	public function apagarConta(){
-
+	public function apagarConta($id,$senha){
+		$busca = $this -> buscarUsuarioPorId($id,$senha);
+		if($busca){
+			return  $this->db->delete('usuario', array('id' => $id));
+		}
+		else{
+			return false;
+		}
 	}
 	public function buscarUsuario($usuario, $senha){
 		$result = $this -> db -> get_where('usuario', array('login' => $usuario, 'senha' => md5($senha)));
@@ -34,5 +40,8 @@ class Usuario extends CI_Model {
 		$result = $this -> db -> get_where('usuario', array('login' => $usuario));
 		return $result;
 	}
-
+	public function buscarUsuarioPorId($id, $senha){
+		$result = $this -> db -> get_where('usuario', array('id' => $id, 'senha' => md5($senha)));
+		return $result;
+	}
 }

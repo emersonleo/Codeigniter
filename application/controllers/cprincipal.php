@@ -42,5 +42,16 @@ class cprincipal extends CI_Controller {
 		$this -> session -> set_userdata('usuario_autorizado', null);
 		redirect('home');
 	}
+	public function deletar(){
+		$login = $this -> session -> userdata('usuario_autorizado') -> id;
+		$senha = $_POST['senha'];
+		$result = $this -> usuario -> apagarConta($login, $senha);
+		if($result){
+			$this -> output -> set_output(false);
+			$this -> session -> set_flashdata("status","excluido");
+		}else{
+			$this -> output -> set_output("entrou no else");
+		}
+	}
 
 }

@@ -64,7 +64,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="crossorigin="anonymous"></script>
 <script type="text/javascript">
 	function construirCard(pokemon,numero){
-		console.log(pokemon)
 		var numeroFormatado = "#" + ("0000" + (numero + 1)).slice(-4);
 		var nome = pokemon.name[0].toUpperCase() + pokemon.name.substring(1,pokemon.name.length)
 		var imagemLink = '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + (numero + 1).toString() + '.png"'
@@ -77,7 +76,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				var pokemons = data.results;
 				var strBody = "";
 				for (var i = 0; i < 151; i++) {
-					console.log(i)
 					var pokemon = pokemons[i];
 					strBody += construirCard(pokemon,i);
 				}
@@ -86,6 +84,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	})
 	$('#btnSair').click(function(){
 		window.location.href = <?php echo '"'.base_url('sair').'"'; ?>
+	})
+	$("#btnDelete").click(function(){
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Deseja excluir sua conta?',
+		  text: 'Confirme sua senha para prosseguir com a exclusão',
+		  input: 'password',
+		  showConfirmButton: true,
+		  confirmButtonText: "Continuar",
+		  confirmButtonColor: "#d33",
+		  showCancelButton: true,
+		  cancelButtonText: "Voltar",
+		  cancelButtonColor: "#3085d6",
+		}).then((result) => {
+		  if(result.value){
+		   	$.post(<?php echo "'".base_url("excluir")."'";?>,{"senha":result.value},function(data){
+		   		if(data){
+		   			Swal.fire('Não foi possível prosseguir com a exclusão', 'possivelmente a senha digitada difere da senha da conta','error');
+		   		}
+		   		else{
+					window.location.href = <?php  echo "'".base_url("sair")."'";?>	   			
+		   		}
+		   	})
+		  }
+		})
 	})
 	
 
