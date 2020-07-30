@@ -22,7 +22,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    <span class="navbar-toggler-icon"></span>
 		  </button>
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-		    <div class="navbar-nav">
+		    <div class="navbar-nav" align="center">
 		    	<ul class="navbar-nav">
 		    	<li class="nav-item">
 		    		<a class="nav-item nav-link" href="#">Inicio</a>
@@ -36,8 +36,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			          <a class="dropdown-item" id="btnDelete" href="#">Excluir Conta</a>
 			        </div>
 		    	</li>
+		    	<li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          Região
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="#" id='btnKanto' > Kanto </a>
+			          <a class="dropdown-item" href="#" id='btnJohto' > Johto </a>
+			          <a class="dropdown-item" href="#" id="btnHoenn" > Hoenn </a>
+			          <a class="dropdown-item" href="#" id="btnSinnoh" > Sinnoh </a>
+			          <a class="dropdown-item" href="#" id="btnUnova" > Unova </a>
+			          <a class="dropdown-item" href="#" id="btnKalos" > Kalos </a>
+			          <a class="dropdown-item" href="#" id="btnAlola" > Alola </a>
+			        </div>
+			      </li>
 		    	<li class="nav-item">
-		    		<button id='btnSair' name="btnSair" class="btn btn-outline-danger form-control"> Sair </button>
+		    		<button id='btnSair' name="btnSair" class="btn btn-outline-danger form-inline"> Sair </button>
 		    	</li>
 				</ul>
 		    </div>
@@ -68,19 +82,46 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		var nome = pokemon.name[0].toUpperCase() + pokemon.name.substring(1,pokemon.name.length)
 		var imagemLink = '"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + (numero + 1).toString() + '.png"'
 		var strCard = "<div lass='card' style='width:10%; height:10%; margin:5px; text-align:center; padding-top:0px;'>" + 
-		"<img class='pb-0' src= " + imagemLink +  ">" + nome + "<br>" + numeroFormatado + "</div>"
+		"<img style='max-height:96px;'class='pb-0' src= " + imagemLink +  ">" + nome + "<br>" + numeroFormatado + "</div>"
 		return strCard;
 	}
-	$(function(){
-			$.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151", function(data){
+	function exibirCatalogo(data,inicio,fim){
 				var pokemons = data.results;
 				var strBody = "";
-				for (var i = 0; i < 151; i++) {
+				for (var i = inicio; i <= fim; i++) {
 					var pokemon = pokemons[i];
 					strBody += construirCard(pokemon,i);
 				}
 				$('#divcollection')[0].innerHTML = strBody
+	}
+
+	$(function(){
+		$.get("https://pokeapi.co/api/v2/pokemon/?offset=0&limit=954", function(data){
+			exibirCatalogo(data,0,150)
+			$('#btnKanto').click(function(newData){
+				exibirCatalogo(data,0,150)
 			})
+			$('#btnJohto').click(function(newData){
+				exibirCatalogo(data,151,250)
+			})
+			$('#btnHoenn').click(function(newData){
+				exibirCatalogo(data,251,385)
+			})
+			$('#btnSinnoh').click(function(newData){
+				exibirCatalogo(data,386,492)
+			})
+			$('#btnUnova').click(function(newData){
+				exibirCatalogo(data,493, 649)
+			})
+			$('#btnKalos').click(function(newData){
+				exibirCatalogo(data,650, 721)
+			})
+			$('#btnAlola').click(function(newData){
+				exibirCatalogo(data, 721, 806)
+			})
+
+
+		})
 	})
 	$('#btnSair').click(function(){
 		window.location.href = <?php echo '"'.base_url('sair').'"'; ?>
@@ -100,11 +141,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		}).then((result) => {
 		  if(result.value){
 		   	$.post(<?php echo "'".base_url("excluir")."'";?>,{"senha":result.value},function(data){
-		   		if(data){
+		   		if(data == false){
 		   			Swal.fire('Não foi possível prosseguir com a exclusão', 'possivelmente a senha digitada difere da senha da conta','error');
 		   		}
 		   		else{
-					window.location.href = <?php  echo "'".base_url("sair")."'";?>	   			
+					window.location.href = data	   			
 		   		}
 		   	})
 		  }

@@ -13,10 +13,10 @@ class Usuario extends CI_Model {
 		redirect('home');
 	}
 	public function criarUsuario($login,$senha,$nome){
-		if(!$this -> buscarUsuarioPorLogin($login)){
-			$result = $this -> db -> insert('usuario', array('login' => $login, 'senha' => md5($senha), 'nome' => $nome));
-		}else{
+		if($this -> buscarUsuarioPorLogin($login) -> num_rows() > 0){
 			$result = false;
+		}else{
+			$result = $this -> db -> insert('usuario', array('login' => $login, 'senha' => md5($senha), 'nome' => $nome));
 		}
 		return $result;
 	}
@@ -36,8 +36,8 @@ class Usuario extends CI_Model {
 		$result = $this -> db -> get_where('usuario', array('login' => $usuario, 'senha' => md5($senha)));
 		return $result;
 	}
-	public function buscarUsuarioPorLogin($usuario){
-		$result = $this -> db -> get_where('usuario', array('login' => $usuario));
+	public function buscarUsuarioPorLogin($login){
+		$result = $this -> db -> get_where('usuario', array('login' => $login));
 		return $result;
 	}
 	public function buscarUsuarioPorId($id, $senha){

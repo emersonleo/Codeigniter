@@ -17,10 +17,11 @@ class cprincipal extends CI_Controller {
 		$nome = $_POST['nome'];
 		$result = $this -> usuario -> criarUsuario($login,$senha,$nome);
 		if($result){
-			$this -> output -> set_output(true);
-			redirect('home');
+			$this -> session -> set_flashdata('status_cadastro', 'cadastro com sucesso');
+			$this -> output -> set_output(base_url('home'));
 		}else{
-			redirect('cadastro');
+			$this -> session -> set_flashdata('status_cadastro', 'erro no cadastro');
+			$this -> output -> set_output(base_url('cadastro'));
 		}
 	}
 	public function login(){
@@ -47,10 +48,10 @@ class cprincipal extends CI_Controller {
 		$senha = $_POST['senha'];
 		$result = $this -> usuario -> apagarConta($login, $senha);
 		if($result){
-			$this -> output -> set_output(false);
-			$this -> session -> set_flashdata("status","excluido");
+			$this -> session -> set_flashdata("status_delete","excluido");
+			$this -> output -> set_output(base_url("sair"));
 		}else{
-			$this -> output -> set_output("entrou no else");
+			$this -> output -> set_output(false);
 		}
 	}
 

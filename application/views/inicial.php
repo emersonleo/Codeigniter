@@ -16,6 +16,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		if($this -> session -> flashdata("error") == "LOG001 - login e senha não confere"){
 			echo "<script> Swal.fire('Login e senha não encontrados', 'Não foram encontrados login e senha correspondente para esse usuário','error'); </script>";
 		}
+		elseif($this -> session -> flashdata("status_cadastro") == "cadastro com sucesso") {
+			echo "<script> Swal.fire('Conta criada com sucesso', 'utilize as informações inseridas no cadastro para acessar o sistema','success'); </script>";
+		}
+		elseif($this -> session -> flashdata("status_delete") == "excluido") {
+			echo "<script> Swal.fire('Conta deletada com sucesso', 'caso deseje criar uma nova conta, acesse o menu de cadastro','success'); </script>";
+		}
 	?>
 
 <div id="container" class="container" style="width: 35%; margin-top: 10%" >
