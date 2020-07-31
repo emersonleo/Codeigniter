@@ -20,9 +20,6 @@ class Usuario extends CI_Model {
 		}
 		return $result;
 	}
-	public function alterarSenha(){
-
-	}
 	public function apagarConta($id,$senha){
 		$busca = $this -> buscarUsuarioPorId($id,$senha);
 		if($busca){
@@ -44,4 +41,22 @@ class Usuario extends CI_Model {
 		$result = $this -> db -> get_where('usuario', array('id' => $id, 'senha' => md5($senha)));
 		return $result;
 	}
+	public function alterarNome($nome, $id_usuario){
+		$this -> db -> where('id',$id_usuario);
+		$result = $this ->  db -> update('usuario', array('nome' => $nome));
+		return $result;
+	}	
+	public function alterarLogin($login, $senha, $id_usuario){
+		$this -> db -> where(array('id' => $id_usuario, 'senha' => md5($senha)));
+		$result = $this ->  db -> update('usuario', array('login' => $login));
+		return $result;
+	}
+	public function alterarSenha($senhaAntiga, $senhaNova, $id_usuario){
+		$this -> db -> where(array('id' => $id_usuario, 'senha' => md5($senha)));
+		$result = $this ->  db -> update('usuario', array('senha' => md5($senhaNova)));
+		return $result;
+	}
+
+
+
 }

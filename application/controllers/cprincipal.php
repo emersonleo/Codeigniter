@@ -54,5 +54,40 @@ class cprincipal extends CI_Controller {
 			$this -> output -> set_output(false);
 		}
 	}
+	public function alterarLogin(){
+		$login = $_POST['login'];
+		$senha = $_POST['senha'];
+		$id = $this -> session -> userdata('usuario_autorizado') -> id;
+		$result = $this -> usuario -> alterarLogin($login,$senha, $id);
+		if($result){
+			$this -> output -> set_output(true);
+		}
+		else{
+			$this -> output -> set_output(false);
+		}
+	}
+	public function alterarNome(){
+		$nome = $_POST['nome'];
+		$id = $this -> session -> userdata('usuario_autorizado') -> id;
+		$result = $this -> usuario -> alterarNome($nome,$id);
+		if($result){
+			$this -> output -> set_output(true);
+		}
+		else{
+			$this -> output -> set_output(false);
+		}
+	}
+	public function alterarSenha(){
+		$senhaAntiga = $_POST['senha'];
+		$senhaNova = $_POST['novasenha'];
+		$id = $this -> session -> userdata('usuario_autorizado') -> id;
+		$result = $this -> usuario -> alterarSenha($senhaAntiga,$senhaNova,$id);
+		if($result){
+			$this -> output -> set_output(true);
+		}
+		else{
+			$this -> output -> set_output(false);
+		}
+	}
 
 }

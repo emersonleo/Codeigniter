@@ -60,6 +60,9 @@ $route['cadastrar'] = 'cprincipal/cadastrar';
 $route['acessar'] = 'cprincipal/login'; 
 $route['sair'] = 'cprincipal/logout';
 $route['excluir'] = 'cprincipal/deletar';
+$route['trocarnome'] = 'cprincipal/alterarNome';
+$route['trocarsenha'] = 'cprincipal/alterarSenha';
+$route['trocarlogin'] = 'cprincipal/alterarLogin';
 
 $route['default_controller'] = 'cprincipal';
 $route['404_override'] = '';

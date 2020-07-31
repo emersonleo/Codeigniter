@@ -55,15 +55,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		
 		</div>
 		<div id="alterarLogin"> 
-			<input type="text" id='novoLogin' name="novLogin" placeholder="Digite seu novo Login"  class="form-control" required style="margin-bottom: 5px">
+			<input type="text" id='novoLogin' name="novoLogin" placeholder="Digite seu novo Login"  class="form-control" required style="margin-bottom: 5px">
 		</div>
 		<input type="password" id='senha' name="senha" placeholder="Digite sua senha atual"  class="form-control"required style="margin-bottom: 5px">
 		<div id="alterarSenha">
 			<input type="password" id='novaSenha' name="novaSenha" placeholder="Digite sua nova senha"  class="form-control"required style="margin-bottom: 5px">
-			<input type="password" id='confirmarsenha' name="confirmarsenha" placeholder="Confirme sua nova senha"  class="form-control" required style="margin-bottom:  5px">
+			<input type="password" id='confirmarSenha' name="confirmarSenha" placeholder="Confirme sua nova senha"  class="form-control" required style="margin-bottom:  5px">
 		</div>
 		<div id='divConfirmar'>
-			<button type="button" id="btnConfirmar" class="btn btn-success" > Confirmar </button>
+			<button type="submit" id="btnConfirmar" class="btn btn-success" > Confirmar </button>
 			<button type="button" id="btnVoltar"class="btn btn-info"> Voltar </button>
 		</div>
 </div>
@@ -89,7 +89,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	})
 	$('#btnNome').click(function(data){
 		opcao = "nome"
-		console.log("entrou")
 		$('#divButtons').hide()
 		$('#divConfirmar').show()
 		$('#alterarNome').show()
@@ -116,11 +115,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		$('#divButtons').hide()
 	})
 	$("#btnConfirmar").click(function(data){
-
+		if(opcao == "nome"){
+			var nome = $("#nome")[0].value
+			$.post(<?php echo "'".base_url('trocarnome')."'"; ?>,{"nome":nome}, function(data){
+				if(data){
+					window.location.href = <?php echo "'".base_url('alterar')."'"; ?>
+				}
+			})
+		}
+		else if(opcao == "login"){
+			var login = $("#novoLogin")[0].value
+			var senha = $('#senha')[0].value
+			$.post(<?php echo "'".base_url('trocarlogin')."'"; ?>,{"login":login, "senha":senha}, function(data){
+				if(data){
+					window.location.href = <?php echo "'".base_url('alterar')."'"; ?>
+				}
+			})
+		}
+		else if(opcao == "senha" && ($('#novaSenha')[0].value == $('#confirmarSenha')[0].value)){
+			var novaSenha = $("#novaSenha")[0].value
+			var senha = $('#senha')[0].value
+			$.post(<?php echo "'".base_url('trocarsenha')."'"; ?>,{"novasenha":novaSenha, "senha":senha}, function(data){
+				if(data){
+					window.location.href = <?php echo "'".base_url('alterar')."'"; ?>
+				}
+			})
+		}
 
 	})
 	$("#btnVoltar").click(function(data){
-		window.location.href =<?php echo "'".base_url('alterar')."'"; ?>
-		
+		window.location.href =<?php echo "'".base_url('alterar')."'"; ?>	
 	})
 </script>
