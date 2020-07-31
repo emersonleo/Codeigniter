@@ -16,5 +16,8 @@ class ctelas extends CI_Controller {
 	public function goToPrincipal(){
 		$this -> load -> view('telaprincipal');
 	}
+	public function goToAlterarConta(){
+		$this -> load -> view("telaalterar");
+	}
 
 }

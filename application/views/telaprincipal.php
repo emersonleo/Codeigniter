@@ -25,14 +25,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    <div class="navbar-nav" align="center">
 		    	<ul class="navbar-nav">
 		    	<li class="nav-item">
-		    		<a class="nav-item nav-link" href="#">Inicio</a>
+		    		<a class="nav-item nav-link" href=<?php echo '"'.base_url('principal').'"';?>>Inicio</a>
 		    	</li>
 		    	<li class="nav-item dropdown">
 			    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          Conta
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-			          <a class="dropdown-item" href="#">Alterar Conta</a>
+			          <a class="dropdown-item" href=<?php echo '"'.base_url('alterar').'"';?> >Alterar Conta</a>
 			          <a class="dropdown-item" id="btnDelete" href="#">Excluir Conta</a>
 			        </div>
 		    	</li>

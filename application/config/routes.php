@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['home'] = 'ctelas/goToLogin';
 $route['cadastro'] = 'ctelas/goToCadastro';
 $route['principal'] = 'ctelas/goToPrincipal';
-
+$route['alterar'] = 'ctelas/goToAlterarConta';
 #funções
 $route['cadastrar'] = 'cprincipal/cadastrar';
 $route['acessar'] = 'cprincipal/login'; 
